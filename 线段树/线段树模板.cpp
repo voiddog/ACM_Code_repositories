@@ -1,14 +1,14 @@
-//¶¨Òå×óÓÒ¶ù×Óºê¶¨Òå
+ï»¿//å®šä¹‰å·¦å³å„¿å­å®å®šä¹‰
 #define lson l,mid,id<<1
 #define rson mid+1,r,id<<1|1
-const int MAXN=100000;//×î´ó¸öÊı
-int tree[MAXN<<2];//´¢´æÏß¶ÎÊ÷µÄÊı¾İ
-//ÏòÉÏ¸üĞÂ
+const int MAXN=100000;//æœ€å¤§ä¸ªæ•°
+int tree[MAXN<<2];//å‚¨å­˜çº¿æ®µæ ‘çš„æ•°æ®
+//å‘ä¸Šæ›´æ–°
 void PushUp(int id)
 {
-	tree[id]=tree[id<<1]+tree[id<<1|1];//¸ü¾ßĞèÒªĞ´¸üĞÂ²Ù×÷
+	tree[id]=tree[id<<1]+tree[id<<1|1];//æ›´å…·éœ€è¦å†™æ›´æ–°æ“ä½œ
 }
-//½¨Á¢Ïß¶ÎÊ÷
+//å»ºç«‹çº¿æ®µæ ‘
 void Build(int l,int r,int id)
 {
 	if(l==r)
@@ -20,7 +20,7 @@ void Build(int l,int r,int id)
 	Build(lson),Build(rson);
 	PushUp(id);
 }
-//µ¥µã¸üĞÂ
+//å•ç‚¹æ›´æ–°
 void Update(int x,int c,int l,int r,int id)
 {
 	if(l==r&&x==l)
@@ -39,7 +39,7 @@ void Update(int x,int c,int l,int r,int id)
 	}
 	PushUp(id);
 }
-//Çø¼ä¸üĞÂ
+//åŒºé—´æ›´æ–°
 void Update(int L,int R,int c,int l,int r,int id)
 {
 	if(L<=l&&r<=R)
@@ -58,7 +58,7 @@ void Update(int L,int R,int c,int l,int r,int id)
 	}
 	PushUp(id);
 }
-//µ¥µã²éÑ¯
+//å•ç‚¹æŸ¥è¯¢
 int Query(int x,int l,int r,int id)
 {
 	if(l==r&&r==x)
@@ -75,7 +75,7 @@ int Query(int x,int l,int r,int id)
 		return Query(x,rson);
 	}
 }
-//Çø¼ä²éÑ¯
+//åŒºé—´æŸ¥è¯¢
 int Query(int L,int R,int l,int r,int id)
 {
 	if(L<=l&&r<=R)
