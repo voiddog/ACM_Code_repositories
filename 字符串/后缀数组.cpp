@@ -1,0 +1,65 @@
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+const int MAX_LEN = 200010;
+int len, k;
+int rank[MAX_LEN], tmp[MAX_LEN];
+
+bool cmp(int i, int j){
+    if(rank[i] != rank[j]) return rank[i] < rank[j];
+    else{
+	int ri = i + k <= len ? rank[i+k] : -1;
+	int rj = j + k <= len ? rank[j+k] : -1;
+	return ri < rj;
+    }
+}
+
+void Construct_sa(char *s, int *sa){
+    len = strlen(s);
+    for(int i=0; i<=len; i++){
+	sa[i] = i;
+	rank[i] = i < len ? s[i] : -1;
+    }
+    for(k=1; k<=len; k<<=1){
+	sort(sa, sa+len+1, cmp);
+	tmp[sa[0]] = 0;
+	for(int i=1; i<=len; i++){
+	    tmp[sa[i]] = tmp[sa[i-1]] + (cmp(sa[i-1], sa[i]) ? 1 : 0);
+	}
+	for(int i=0; i<=len; i++) rank[i] = tmp[i];
+    }
+}
+
+void Construct_lcp(char *s, int *sa, int *lcp){
+    int h = 0;
+    lcp[0] = 0;
+    for(int i=0; i<len; i++){
+	int j = sa[rank[i]-1];
+	if(h>0) h--;
+	for(; j+h<len && i+h<len; h++){
+	    if(s[j+h] != s[i+h]) break;
+	}
+	lcp[rank[i]-1] = h;
+    }
+}
+int sa[MAX_LEN], lcp[MAX_LEN];
+char s[MAX_LEN];
+int main(){
+    freopen("in.txt", "r", stdin);
+    while(scanf("%s", s)!=EOF){
+	int s1Len = strlen(s);
+	s[s1Len] = '$';
+	scanf("%s", s+s1Len+1);
+	Construct_sa(s, sa);
+	Construct_lcp(s, sa, lcp);
+	int ans = 0;
+	for(int i=0; i<len; i++){
+	    if((sa[i]<s1Len) != (sa[i-1]<s1Len))
+		ans = max(ans, lcp[i]);
+	}
+	printf("%d\n", ans);
+    }
+    return 0;
+}
