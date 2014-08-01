@@ -4,7 +4,7 @@
 using namespace std;
 const int MAX_N = 40010;
 const int MAX_M = 999999;
-struct eage{
+struct edge{
     int v, w, next;
 }road[MAX_M];
 int NE, NV; //sap，init中的memset用到了NV，如果不能事先确定大小，最好改成初始化整个数组
@@ -32,7 +32,7 @@ int sap(int s,int t){
     gap[0] = NV;
     while(dis[s] < NV){
 loop:   for(int &i = cur[u]; ~i; i = road[i].next){
-            eage &e = road[i];
+            edge &e = road[i];
             int v = e.v;
             if(e.w && dis[u] == dis[v] + 1){
                 if(aug==-1) aug = e.w;
@@ -53,7 +53,7 @@ loop:   for(int &i = cur[u]; ~i; i = road[i].next){
         int mindis = NV;
         for(int i = head[u]; ~i; i = road[i].next){
             int v = road[i].v;
-            eage &e = road[i];
+            edge &e = road[i];
             if(e.w && mindis > dis[v]){
                 cur[u] = i;
                 mindis = dis[v];
