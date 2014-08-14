@@ -12,7 +12,7 @@ vector<point> Convex_hull(point *ps,int n){
 	vector<point> qs(n*2);
 	//构造凸包下侧
 	for(int i=0;i<n;i++){
-		while(k>1&&(qs[k-1]-qs[k-1]).det(ps[i]-qs[k-1])<=0){
+		while(k>1&&(qs[k-1]-qs[k-2]).det(ps[i]-qs[k-1])<=0){
 			k--;
 		}
 		qs[k++]=ps[i];
