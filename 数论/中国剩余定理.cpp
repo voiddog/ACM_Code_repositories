@@ -1,6 +1,6 @@
 //普通版，模数不互质
 LL modx(LL a[], LL b[], int len){
-    LL a1, a2, b1,, x, y, d;
+    LL a1, a2, b1, b2, x, y, d;
     bool flag = false;
     a1 = a[0], b1 = b[0];
     for (int i = 1; i < len; i++){
