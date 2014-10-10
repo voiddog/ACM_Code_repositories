@@ -41,7 +41,7 @@ int dinic(int s,int t,int n){
             }
             else if(u==t){
                 for(tp=inf,i=tail-1; i>=0; i--)tp=min(tp,e[que[i]].v);
-                for(mf+=tp,i=tail-1; i>=0; i--{
+                for(mf+=tp,i=tail-1; i>=0; i--){
                     e[que[i]].v-=tp;
                     e[que[i]^1].v+=tp;
                     if(e[que[i]].v==0)tail=i;
