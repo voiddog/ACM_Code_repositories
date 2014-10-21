@@ -2,13 +2,14 @@
 ./random
 ./a
 ./b
-./compare a.txt b.txt
+cmp a.txt b.txt
 declare -i i=$?
-for (( ; i==1 ; ))
+for (( ; i==0 ; ))
 do
+    echo "ok"
     ./random
     ./a
     ./b
-    ./compare a.txt b.txt
+    cmp a.txt b.txt
     i=$?;
 done
