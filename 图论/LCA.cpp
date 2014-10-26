@@ -1,7 +1,7 @@
 const int MAX_N = 10005;
 const int MAX_M = 10005;
-const int MAX_Q = 10005;//Ñ¯ÎÊ¸öÊı
-int ask[2][MAX_N], lca[MAX_N], dist[MAX_N];//ÀëÏß±£´æµÄÑ¯ÎÊ£¬×î½ü¹«¹«×æÏÈ£¬¾àÀë
+const int MAX_Q = 10005;//è¯¢é—®ä¸ªæ•°
+int ask[2][MAX_N], lca[MAX_N], dist[MAX_N];//ç¦»çº¿ä¿å­˜çš„è¯¢é—®ï¼Œæœ€è¿‘å…¬å…¬ç¥–å…ˆï¼Œè·ç¦»
 bool vist[MAX_N];
 int head[MAX_N], Set[MAX_N], lp;
 struct eage{
@@ -24,8 +24,8 @@ int Find(int x){
     }
     return Set[x] = Find(Set[x]);
 }
-int N, Q;//µãµÄ¸öÊı£¬Ñ¯ÎÊ¸öÊı
-void Dfs(int x){//ÀëÏßÇó³ölca
+int N, Q;//ç‚¹çš„ä¸ªæ•°ï¼Œè¯¢é—®ä¸ªæ•°
+void Dfs(int x){//ç¦»çº¿æ±‚å‡ºlca
     vist[s] = true;
     Set[s] = -1;
     for(int i=0; i<Q; i++){
