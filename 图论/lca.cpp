@@ -5,7 +5,6 @@ void dfs(int v, int p, int d){
     for (int i = 0; i < G[v].size(); i++){
         if (G[v][i].v != p) dfs(G[v][i].v, v, d + 1);
     }*/
-    
     //Bfs
     queue<edge> q;
     edge s;
